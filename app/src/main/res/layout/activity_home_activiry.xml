@@ -31,4 +31,22 @@
         android:id="@+id/button2"
         android:onClick="startListSMSActivity"
         />
+
+    <Button
+        android:text="goToLoginPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/goToLoginPage"
+        android:onClick="goBackToLoginScreen"/>
+
+    <Button
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button"
+        android:id="@+id/logoutButton"
+        android:onClick="logoutFacebookButtonClick" />
 </RelativeLayout>
