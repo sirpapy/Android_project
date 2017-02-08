@@ -1,4 +1,4 @@
-package upem.univ.fr.amcf;
+package fr.amcf;
 
 import android.Manifest;
 import android.app.Activity;
@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import upem.univ.fr.amcf.R;
 
 public class SMSList extends Activity implements AdapterView.OnItemClickListener {
 
