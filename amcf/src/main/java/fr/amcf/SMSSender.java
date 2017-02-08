@@ -1,4 +1,4 @@
-package upem.univ.fr.amcf;
+package fr.amcf;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import upem.univ.fr.amcf.R;
 
 public class SMSSender extends AppCompatActivity {
     EditText numberEditText,messageEditText;

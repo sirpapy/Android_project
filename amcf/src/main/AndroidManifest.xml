@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,25 +13,30 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActiviry">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="1046614502109093" />
+
+        <activity android:name="fr.amcf.HomeActiviry">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SMSSender" />
+        <activity android:name="fr.amcf.SMSSender" />
 
         <receiver
-            android:name=".IncomingSmsReceiver"
+            android:name="fr.amcf.IncomingSmsReceiver"
             android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".SMSList" />
-        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name="fr.amcf.SMSList" />
+        <activity android:name="fr.amcf.NotificationActivity" />
+        <activity android:name="fr.amcf.LoginFacebookActivity"></activity>
     </application>
 
 </manifest>

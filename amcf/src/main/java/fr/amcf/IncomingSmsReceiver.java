@@ -1,18 +1,18 @@
-package upem.univ.fr.amcf;
+package fr.amcf;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Movie;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
+
+import upem.univ.fr.amcf.R;
 
 /**
  * Created by Sirpapy on 29/01/2017.

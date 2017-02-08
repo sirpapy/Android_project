@@ -1,4 +1,4 @@
-package upem.univ.fr.amcf;
+package fr.amcf;
 
 
 import android.content.Intent;
@@ -8,7 +8,8 @@ import android.view.View;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
-import com.facebook.login.widget.LoginButton;
+
+import upem.univ.fr.amcf.R;
 
 public class HomeActiviry extends AppCompatActivity {
 
