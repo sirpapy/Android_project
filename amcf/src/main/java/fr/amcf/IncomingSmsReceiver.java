@@ -12,8 +12,6 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
-import upem.univ.fr.amcf.R;
-
 /**
  * Created by Sirpapy on 29/01/2017.
  */
