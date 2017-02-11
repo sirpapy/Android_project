@@ -19,26 +19,30 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="1046614502109093" />
 
-        <activity android:name="fr.amcf.HomeActiviry">
+        <activity android:name=".HomeActiviry">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="fr.amcf.SMSSender" />
+        <activity android:name=".SMSSender" />
 
         <receiver
-            android:name="fr.amcf.IncomingSmsReceiver"
+            android:name=".IncomingSmsReceiver"
             android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name="fr.amcf.SMSList" />
-        <activity android:name="fr.amcf.NotificationActivity" />
-        <activity android:name="fr.amcf.LoginFacebookActivity"></activity>
+        <activity android:name=".SMSList" />
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".LoginFacebookActivity" />
+        <activity
+            android:name=".ContactListActivity"
+            android:label="@string/title_activity_contact_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
