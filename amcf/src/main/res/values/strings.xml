@@ -2,4 +2,5 @@
     <string name="app_name">AMCF</string>
     <string name="cancel_login" />
     <string name="error_login">Error login</string>
+    <string name="title_activity_contact_list">ContactListActivity</string>
 </resources>
