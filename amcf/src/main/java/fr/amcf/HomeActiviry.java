@@ -1,27 +1,17 @@
 package fr.amcf;
 
 
-import android.Manifest;
-import android.content.ContentResolver;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 
-import java.util.ArrayList;
 
-
-public class HomeActiviry extends AppCompatActivity {
+public class HomeActiviry extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,5 +40,7 @@ public class HomeActiviry extends AppCompatActivity {
         LoginManager.getInstance().logOut();
     }
 
-
+    public void startContact(View view) {
+        startActivity(new Intent(HomeActiviry.this, ContactActivity.class));
+    }
 }

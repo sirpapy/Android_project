@@ -49,4 +49,15 @@
         android:layout_toEndOf="@+id/button"
         android:id="@+id/logoutButton"
         android:onClick="logoutFacebookButtonClick" />
+
+    <Button
+        android:text="Liste des contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:id="@+id/listeDeContacts"
+        android:layout_below="@+id/button"
+        android:onClick="startContact"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
