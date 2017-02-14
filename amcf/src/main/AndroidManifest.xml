@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ContactActivity"
+            android:name=".contactview.ContactActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <!--<intent-filter>-->

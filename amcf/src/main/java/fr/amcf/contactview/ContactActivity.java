@@ -1,4 +1,4 @@
-package fr.amcf;
+package fr.amcf.contactview;
 
 import android.Manifest;
 import android.content.ContentResolver;
@@ -12,12 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.amcf.R;
 
 /**
  * Created by dchesnea on 15/02/2017.
@@ -64,6 +66,9 @@ public class ContactActivity extends AppCompatActivity {
         } else {
             initContacts();
         }
+        ItemTouchHelper.Callback callback = new ItemTouchEventCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -88,7 +93,9 @@ public class ContactActivity extends AppCompatActivity {
             while (cur.moveToNext()) {
                 String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
                 String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                String email = "TODO";// cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
+//                String email = "TODO";// cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
+                int columnIndex = cur.getColumnIndex(ContactsContract.CommonDataKinds.Contactables.DISPLAY_NAME);
+                String email = columnIndex == -1 ? "Not set" : cur.getString(columnIndex);
 
                 if (cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
                     Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
