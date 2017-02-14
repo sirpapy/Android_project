@@ -13,14 +13,18 @@ import java.util.List;
  */
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.AmcfViewHolder> {
 
-    private List<Contact> contactsList;
+    private final List<Contact> contactsList;
 
     public ContactsAdapter(List<Contact> moviesList) {
-        this.contactsList = moviesList;
+        if(moviesList != null){
+            this.contactsList = moviesList;
+        }else {
+            throw new NullPointerException("Your contact list is null.");
+        }
     }
 
     public class AmcfViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, phoneNumber, email;
+        private final TextView name, phoneNumber, email;
 
         public AmcfViewHolder(View view) {
             super(view);
