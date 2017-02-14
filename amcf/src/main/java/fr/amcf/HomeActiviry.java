@@ -10,6 +10,8 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 
+import fr.amcf.contactview.ContactActivity;
+
 
 public class HomeActiviry extends Activity {
 

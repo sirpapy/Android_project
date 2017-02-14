@@ -1,4 +1,4 @@
-package fr.amcf;
+package fr.amcf.contactview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

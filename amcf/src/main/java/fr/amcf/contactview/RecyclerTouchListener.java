@@ -1,4 +1,4 @@
-package fr.amcf;
+package fr.amcf.contactview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -1,11 +1,10 @@
-package fr.amcf;
+package fr.amcf.contactview;
 
 import static java.util.Objects.requireNonNull;
 
 /**
  * Created by dchesnea on 09/02/2017.
  */
-
 public class Contact {
     private final String name;
     private final String email;
