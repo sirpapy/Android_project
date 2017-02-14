@@ -47,10 +47,6 @@
         <activity android:name=".SMSList" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".LoginFacebookActivity" />
-        <activity
-            android:name=".ContactListActivity"
-            android:label="@string/title_activity_contact_list"
-            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
