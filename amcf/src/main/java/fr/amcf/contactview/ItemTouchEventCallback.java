@@ -2,6 +2,10 @@ package fr.amcf.contactview;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
+import android.widget.TextView;
+
+import fr.amcf.R;
 
 /**
  * Created by dchesnea on 14/02/2017.
@@ -27,7 +31,7 @@ public class ItemTouchEventCallback extends ItemTouchHelper.Callback {
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipeFlags = ItemTouchHelper.START | ItemTouchHelper.END;
+        int swipeFlags = ItemTouchHelper.END; //ItemTouchHelper.START |
         return makeMovementFlags(dragFlags, swipeFlags);
     }
 
@@ -40,6 +44,8 @@ public class ItemTouchEventCallback extends ItemTouchHelper.Callback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+        TextView name = (TextView) viewHolder.itemView.findViewById(R.id.name);
+        name.setText("View contact messages ?");
         recyclerAdapter.onItemDismiss(viewHolder.getAdapterPosition());
     }
 
