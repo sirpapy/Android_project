@@ -1,6 +1,7 @@
 package fr.amcf.contactview;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.AmcfVi
 
     @Override
     public void onItemDismiss(int position) {
-        notifyItemRemoved(position);
+//        notifyItemRemoved(position);
+        notifyItemChanged(position);
     }
 
     public class AmcfViewHolder extends RecyclerView.ViewHolder {
@@ -58,8 +60,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.AmcfVi
 
     @Override
     public AmcfViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.contact_list_row, parent, false);
+        Log.i("TEST", "VIEW TYPE=" + viewType);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_list_row, parent, false);
         return new AmcfViewHolder(itemView);
     }
 
