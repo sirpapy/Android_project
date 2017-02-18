@@ -1,7 +1,6 @@
 ## Team
 CHESNEAU Damien
 FRECHET Nicolas
-MASLAH Karim
 NDIAYE Pape Ballé
 NDOYE Lamine
 RABEARIJAO Maminirina Thierry
