@@ -1,5 +1,10 @@
 package fr.amcf.contactview;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.amcf.message.Message;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -9,11 +14,20 @@ public class Contact {
     private final String name;
     private final String email;
     private final String primaryPhoneNumber;
+    private List<Message> messages = new ArrayList<>();
 
     private Contact(Builder builder) {
         name = builder.name;
         email = builder.email;
         primaryPhoneNumber = builder.primaryPhoneNumber;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 
     public String getEmail() {
