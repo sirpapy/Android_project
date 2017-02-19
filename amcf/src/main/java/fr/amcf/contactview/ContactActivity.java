@@ -1,10 +1,13 @@
 package fr.amcf.contactview;
 
 import android.Manifest;
+import android.app.Service;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.amcf.R;
+import fr.amcf.message.Message;
 
 /**
  * Created by dchesnea on 15/02/2017.
@@ -28,6 +32,7 @@ public class ContactActivity extends AppCompatActivity {
     private List<Contact> contactList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ContactsAdapter adapter;
+    private ArrayList<Message> messages = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +115,25 @@ public class ContactActivity extends AppCompatActivity {
             }
             contactList.addAll(builders);
             adapter.notifyDataSetChanged();
+        }
+    }
+
+
+    public class SmsContactUpdateService extends Service {
+
+        @Override
+        public IBinder onBind(Intent intent) {
+            return null;
+        }
+
+        @Override
+        public int onStartCommand(Intent intent, int flags, int startId) {
+            String message;
+            String body;
+            message = intent.getStringExtra("message");
+            body = intent.getStringExtra("body");
+            messages.add(new Message(message,"SMS"));
+            return super.onStartCommand(intent, flags, startId);
         }
     }
 
