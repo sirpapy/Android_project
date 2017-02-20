@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,7 +36,9 @@
 
         <activity android:name=".SMSList" />
         <activity android:name=".NotificationActivity" />
-        <activity android:name=".LoginFacebookActivity"></activity>
+        <activity android:name=".LoginFacebookActivity" />
+        <activity android:name=".FacebookChat" />
+        <activity android:name=".DirectCommunicationAcitivty" />
     </application>
 
 </manifest>

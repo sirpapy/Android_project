@@ -80,8 +80,8 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
                 .setContentTitle("New SMS")
                 // Set Text
                 .setContentText(message)
-                // Add an Action Button below Notification
-                .addAction(R.drawable.notification, "Action Button", pIntent)
+                // Add an Action button below Notification
+                .addAction(R.drawable.notification, "Action button", pIntent)
                 // Set PendingIntent into Notification
                 .setContentIntent(pIntent)
                 // Dismiss Notification

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "610509486972",
+    "firebase_url": "https://amcf-eac56.firebaseio.com",
+    "project_id": "amcf-eac56",
+    "storage_bucket": "amcf-eac56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610509486972:android:df644baac4fa8474",
+        "android_client_info": {
+          "package_name": "upem.univ.fr.amcf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610509486972-mkefvvfcaqv0ugpgbt7nro7hs4lh1e7m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_TOvFi1V3eeop8QFrIZKCXTxoMc-6oxo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

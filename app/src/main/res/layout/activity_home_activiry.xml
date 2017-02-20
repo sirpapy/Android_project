@@ -49,4 +49,28 @@
         android:layout_toEndOf="@+id/button"
         android:id="@+id/logoutButton"
         android:onClick="logoutFacebookButtonClick" />
+
+    <Button
+        android:text="Facebook Chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/logoutButton"
+        android:layout_alignRight="@+id/logoutButton"
+        android:layout_alignEnd="@+id/logoutButton"
+        android:layout_marginRight="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="100dp"
+        android:id="@+id/facebookChat"
+        android:onClick="openFacebookChat"/>
+
+    <Button
+        android:text="StartDirectChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/facebookChat"
+        android:layout_toEndOf="@+id/facebookChat"
+        android:layout_marginTop="47dp"
+        android:id="@+id/button5"
+        android:layout_toRightOf="@+id/facebookChat"
+        android:onClick="goToDirectChat"/>
 </RelativeLayout>

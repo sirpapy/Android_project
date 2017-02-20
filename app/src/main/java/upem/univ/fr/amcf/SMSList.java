@@ -16,6 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+
 import java.util.ArrayList;
 
 public class SMSList extends Activity implements AdapterView.OnItemClickListener {
@@ -42,6 +47,7 @@ public class SMSList extends Activity implements AdapterView.OnItemClickListener
         smsListView.setAdapter(arrayAdapter);
         smsListView.setOnItemClickListener(this);
         refreshSmsInbox();
+
     }
 
 
