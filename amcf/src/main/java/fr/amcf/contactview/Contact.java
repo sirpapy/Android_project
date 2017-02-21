@@ -1,5 +1,10 @@
 package fr.amcf.contactview;
 
+import java.util.Collections;
+import java.util.List;
+
+import fr.amcf.message.Message;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -9,11 +14,17 @@ public class Contact {
     private final String name;
     private final String email;
     private final String primaryPhoneNumber;
+    private final List<Message> messages;
 
     private Contact(Builder builder) {
         name = builder.name;
         email = builder.email;
         primaryPhoneNumber = builder.primaryPhoneNumber;
+        messages = Collections.unmodifiableList(builder.messages);
+    }
+
+    public List<Message> getMessages() {
+        return messages;
     }
 
     public String getEmail() {
@@ -37,6 +48,7 @@ public class Contact {
         private String name;
         private String email;
         private String primaryPhoneNumber;
+        private List<Message> messages;
 
         public Builder() {
             //Default
@@ -45,6 +57,8 @@ public class Contact {
         public Builder(Contact contact) {
             name = contact.name;
             email = contact.email;
+            primaryPhoneNumber = contact.primaryPhoneNumber;
+            messages = contact.messages;
         }
 
         public Builder setEmail(String email) {
@@ -55,6 +69,10 @@ public class Contact {
         public Builder setName(String name) {
             this.name = requireNonNull(name);
             return this;
+        }
+
+        public void setMessages(List<Message> messages) {
+            this.messages = requireNonNull(messages);
         }
 
         public Builder setPrimaryPhoneNumber(String phoneNumber) {
