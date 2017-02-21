@@ -1,6 +1,8 @@
 package fr.amcf.contactview;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import fr.amcf.message.Message;
@@ -23,8 +25,27 @@ public class Contact {
         messages = Collections.unmodifiableList(builder.messages);
     }
 
+    public boolean isPhoneNumberEquals(String phoneNumber) {
+        requireNonNull(phoneNumber);
+        if (primaryPhoneNumber.equals(phoneNumber)) {
+            return true;
+        } else {
+            if (phoneNumber.startsWith("+")) {
+                //TODO
+            }
+            return false;
+        }
+    }
+
     public List<Message> getMessages() {
         return messages;
+    }
+
+    public List<Message> getSortedMessages() {
+        ArrayList<Message> toSort = new ArrayList<>();
+        toSort.addAll(messages);
+        Collections.sort(toSort);
+        return toSort;
     }
 
     public String getEmail() {
@@ -48,7 +69,7 @@ public class Contact {
         private String name;
         private String email;
         private String primaryPhoneNumber;
-        private List<Message> messages;
+        private List<Message> messages = new ArrayList<>();
 
         public Builder() {
             //Default
@@ -81,6 +102,9 @@ public class Contact {
         }
 
         public Contact build() {
+            if (primaryPhoneNumber.startsWith("+")) {
+                primaryPhoneNumber = "0" + primaryPhoneNumber.substring(1);
+            }
             return new Contact(this);
         }
     }

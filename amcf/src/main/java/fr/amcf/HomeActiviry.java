@@ -43,6 +43,6 @@ public class HomeActiviry extends Activity {
     }
 
     public void startContact(View view) {
-        startActivity(new Intent(HomeActiviry.this, ContactActivity.class));
+        startActivity(new Intent(this, ContactActivity.class));
     }
 }
