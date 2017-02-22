@@ -47,6 +47,7 @@
         <activity android:name=".SMSList" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".LoginFacebookActivity" />
+        <activity android:name=".DisplayConversation" />
     </application>
 
 </manifest>

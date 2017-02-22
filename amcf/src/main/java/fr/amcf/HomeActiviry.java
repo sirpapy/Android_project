@@ -28,6 +28,10 @@ public class HomeActiviry extends Activity {
         startActivity(new Intent(HomeActiviry.this, SMSSender.class));
     }
 
+    public void displayConversation(View v){
+        startActivity(new Intent(HomeActiviry.this, DisplayConversation.class));
+    }
+
     public void startListSMSActivity(View v) {
         startActivity(new Intent(HomeActiviry.this, SMSList.class));
     }

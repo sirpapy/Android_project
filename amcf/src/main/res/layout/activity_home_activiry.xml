@@ -60,4 +60,15 @@
         android:onClick="startContact"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="display conversation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listeDeContacts"
+        android:layout_toRightOf="@+id/goToLoginPage"
+        android:layout_toEndOf="@+id/goToLoginPage"
+        android:layout_marginTop="21dp"
+        android:id="@+id/button5"
+        android:onClick="displayConversation"/>
 </RelativeLayout>
