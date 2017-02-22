@@ -7,10 +7,10 @@ package fr.amcf.message;
 public class Message implements Comparable<Message> {
 
     private String body;
-    private String type;
+    private MessageType type;
     private long date;
 
-    public Message(String body, String type, long date) {
+    public Message(String body, MessageType type, long date) {
         this.body = body;
         this.type = type;
         this.date = date;
@@ -28,11 +28,11 @@ public class Message implements Comparable<Message> {
         this.body = body;
     }
 
-    public String getType() {
+    public MessageType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(MessageType type) {
         this.type = type;
     }
 
