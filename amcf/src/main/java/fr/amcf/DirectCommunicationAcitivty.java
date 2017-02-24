@@ -1,4 +1,4 @@
-package upem.univ.fr.amcf;
+package fr.amcf;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,12 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Random;
 
-import upem.univ.fr.amcf.direct_chat_package.ChatAdapter;
-import upem.univ.fr.amcf.direct_chat_package.ChatMessage;
-import upem.univ.fr.amcf.direct_chat_package.Client;
-import upem.univ.fr.amcf.direct_chat_package.CommonMethods;
-import upem.univ.fr.amcf.direct_chat_package.Serveur;
-import upem.univ.fr.amcf.direct_chat_package.Utils;
+import fr.amcf.direct_chat_package.ChatAdapter;
+import fr.amcf.direct_chat_package.ChatMessage;
+import fr.amcf.direct_chat_package.CommonMethods;
+import fr.amcf.direct_chat_package.Serveur;
+import fr.amcf.direct_chat_package.Utils;
+
 
 public class DirectCommunicationAcitivty extends AppCompatActivity {
     private EditText msg_edittext;

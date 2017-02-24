@@ -1,4 +1,4 @@
-package upem.univ.fr.amcf.direct_chat_package;
+package fr.amcf.direct_chat_package;
 
 import android.os.AsyncTask;
 import android.widget.TextView;

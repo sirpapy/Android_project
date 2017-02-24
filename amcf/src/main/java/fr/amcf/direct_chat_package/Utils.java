@@ -1,4 +1,4 @@
-package upem.univ.fr.amcf.direct_chat_package;
+package fr.amcf.direct_chat_package;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -32,9 +32,9 @@ public class Utils {
      * Load UTF8withBOM or any ansi text file.
      * @param filename
      * @return  
-     * @throws java.io.IOException
+     * @throws IOException
      */
-    public static String loadFileAsString(String filename) throws java.io.IOException {
+    public static String loadFileAsString(String filename) throws IOException {
         final int BUFLEN=1024;
         BufferedInputStream is = new BufferedInputStream(new FileInputStream(filename), BUFLEN);
         try {

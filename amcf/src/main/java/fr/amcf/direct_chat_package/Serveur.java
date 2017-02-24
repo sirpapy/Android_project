@@ -1,4 +1,4 @@
-package upem.univ.fr.amcf.direct_chat_package;
+package fr.amcf.direct_chat_package;
 
 import android.app.Service;
 import android.content.Intent;
@@ -16,7 +16,8 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.Enumeration;
 
-import upem.univ.fr.amcf.DirectCommunicationAcitivty;
+import fr.amcf.DirectCommunicationAcitivty;
+
 
 /**
  * Created by Sirpapy on 17/02/2017.
