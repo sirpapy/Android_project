@@ -41,6 +41,8 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
                     Log.i("SmsReceiver", "senderNum: " + senderNum + "; message: " + message);
                     Toast.makeText(context, "SmsReceiver senderNum: " + senderNum + "; message: " + message, Toast.LENGTH_LONG).show();
                     createNotification(context,message);
+                    Intent smsServiceIntent = new Intent();
+                    smsServiceIntent.putExtra("message",message);
 
                     // Show alert
                     int duration = Toast.LENGTH_LONG;
