@@ -18,7 +18,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import upem.univ.fr.amcf.R;
+import fr.amcf.R;
+
 
 public class ChatAdapter extends BaseAdapter {
 

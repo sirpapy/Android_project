@@ -16,7 +16,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Random;
 
-import upem.univ.fr.amcf.R;
+import fr.amcf.R;
+
 
 /**
  * Created by Sirpapy on 17/02/2017.
