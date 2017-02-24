@@ -95,6 +95,10 @@ public class Contact {
         public void setMessages(List<Message> messages) {
             this.messages = requireNonNull(messages);
         }
+        public Builder addMessage(Message messages) {
+            this.messages.add(requireNonNull(messages));
+            return this;
+        }
 
         public Builder setPrimaryPhoneNumber(String phoneNumber) {
             this.primaryPhoneNumber = requireNonNull(phoneNumber);

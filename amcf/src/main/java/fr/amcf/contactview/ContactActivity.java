@@ -32,7 +32,6 @@ public class ContactActivity extends AppCompatActivity {
     private List<Contact> contactList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ContactsAdapter adapter;
-    private ArrayList<Message> messages = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,22 +97,6 @@ public class ContactActivity extends AppCompatActivity {
     }
 
 
-    public class SmsContactUpdateService extends Service {
 
-        @Override
-        public IBinder onBind(Intent intent) {
-            return null;
-        }
-
-        @Override
-        public int onStartCommand(Intent intent, int flags, int startId) {
-            String message;
-            String body;
-            message = intent.getStringExtra("message");
-            body = intent.getStringExtra("body");
-            messages.add(new Message(message, MessageType.SMS));
-            return super.onStartCommand(intent, flags, startId);
-        }
-    }
 
 }
