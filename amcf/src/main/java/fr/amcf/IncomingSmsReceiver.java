@@ -2,15 +2,22 @@ package fr.amcf;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
+
+import fr.amcf.contactdata.ContactProviders;
+import fr.amcf.contactview.Contact;
+import fr.amcf.message.Message;
+import fr.amcf.message.MessageType;
 
 /**
  * Created by Sirpapy on 29/01/2017.
@@ -43,6 +50,8 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
                     createNotification(context,message);
                     Intent smsServiceIntent = new Intent();
                     smsServiceIntent.putExtra("message",message);
+                    Contact c = ContactProviders.getByPhoneNumber(senderNum);
+                    c = new Contact.Builder(c).addMessage(new Message(message, MessageType.SMS)).build();
 
                     // Show alert
                     int duration = Toast.LENGTH_LONG;
@@ -56,6 +65,7 @@ public class IncomingSmsReceiver extends BroadcastReceiver {
             Log.e("SmsReceiver", "Exception smsReceiver" + e);
 
         }
+
     }
     public void createNotification(Context context, String message){
         // Set Notification Title
