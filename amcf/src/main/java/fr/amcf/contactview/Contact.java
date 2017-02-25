@@ -1,5 +1,9 @@
 package fr.amcf.contactview;
 
+import android.widget.Toast;
+
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,14 +31,41 @@ public class Contact {
 
     public boolean isPhoneNumberEquals(String phoneNumber) {
         requireNonNull(phoneNumber);
-        if (primaryPhoneNumber.equals(phoneNumber)) {
+        PhoneNumberUtil pnu = PhoneNumberUtil.getInstance();
+
+        PhoneNumberUtil.MatchType mt = pnu.isNumberMatch(primaryPhoneNumber, phoneNumber);
+        if( mt == PhoneNumberUtil.MatchType.NSN_MATCH || mt == PhoneNumberUtil.MatchType.EXACT_MATCH )
+        {
             return true;
-        } else {
-            if (phoneNumber.startsWith("+")) {
-                //TODO
-            }
-            return false;
         }
+
+////        if (primaryPhoneNumber.equals(phoneNumber)) {
+////            return true;
+////        } else {
+////            if (phoneNumber.startsWith("+")) {
+////                //TODO
+////                if (primaryPhoneNumber.startsWith("+")) {
+////                    if(primaryPhoneNumber.trim().equals(phoneNumber.trim())){
+////                        return true;
+////                    }
+////                }else{
+////                    if(("+"+primaryPhoneNumber.trim().substring(1)).equals(phoneNumber.trim())){
+////                        return true;
+////                    }
+////                }
+////            }else{
+////                if (primaryPhoneNumber.startsWith("+")) {
+////                    if(primaryPhoneNumber.trim()..equals(phoneNumber.trim())){
+////                        return true;
+////                    }
+////                }else{
+////                    if(("+"+primaryPhoneNumber.trim().substring(1)).equals(phoneNumber.trim())){
+////                        return true;
+////                    }
+////                }
+////            }
+            return false;
+//        }
     }
 
     public List<Message> getMessages() {
@@ -95,6 +126,7 @@ public class Contact {
         public void setMessages(List<Message> messages) {
             this.messages = requireNonNull(messages);
         }
+
         public Builder addMessage(Message messages) {
             this.messages.add(requireNonNull(messages));
             return this;
