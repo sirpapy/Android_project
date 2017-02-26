@@ -43,7 +43,7 @@ public class ContactProviders {
                             null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
                     while (pCur.moveToNext()) {
                         String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        builders.add(new Contact.Builder().setName(name)
+                        builders.add(Contact.builder().setName(name)
                                 .setEmail(email).setPrimaryPhoneNumber(phoneNo).build());
                     }
                     pCur.close();

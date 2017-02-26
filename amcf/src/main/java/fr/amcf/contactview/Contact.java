@@ -1,12 +1,9 @@
 package fr.amcf.contactview;
 
-import android.widget.Toast;
-
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import fr.amcf.message.Message;
@@ -32,40 +29,8 @@ public class Contact {
     public boolean isPhoneNumberEquals(String phoneNumber) {
         requireNonNull(phoneNumber);
         PhoneNumberUtil pnu = PhoneNumberUtil.getInstance();
-
         PhoneNumberUtil.MatchType mt = pnu.isNumberMatch(primaryPhoneNumber, phoneNumber);
-        if( mt == PhoneNumberUtil.MatchType.NSN_MATCH || mt == PhoneNumberUtil.MatchType.EXACT_MATCH )
-        {
-            return true;
-        }
-
-////        if (primaryPhoneNumber.equals(phoneNumber)) {
-////            return true;
-////        } else {
-////            if (phoneNumber.startsWith("+")) {
-////                //TODO
-////                if (primaryPhoneNumber.startsWith("+")) {
-////                    if(primaryPhoneNumber.trim().equals(phoneNumber.trim())){
-////                        return true;
-////                    }
-////                }else{
-////                    if(("+"+primaryPhoneNumber.trim().substring(1)).equals(phoneNumber.trim())){
-////                        return true;
-////                    }
-////                }
-////            }else{
-////                if (primaryPhoneNumber.startsWith("+")) {
-////                    if(primaryPhoneNumber.trim()..equals(phoneNumber.trim())){
-////                        return true;
-////                    }
-////                }else{
-////                    if(("+"+primaryPhoneNumber.trim().substring(1)).equals(phoneNumber.trim())){
-////                        return true;
-////                    }
-////                }
-////            }
-            return false;
-//        }
+        return mt == PhoneNumberUtil.MatchType.NSN_MATCH || mt == PhoneNumberUtil.MatchType.EXACT_MATCH;
     }
 
     public List<Message> getMessages() {
@@ -96,13 +61,17 @@ public class Contact {
         return "Name:" + name + " email:" + email;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private String name;
         private String email;
         private String primaryPhoneNumber;
         private List<Message> messages = new ArrayList<>();
 
-        public Builder() {
+        private Builder() {
             //Default
         }
 
@@ -123,8 +92,9 @@ public class Contact {
             return this;
         }
 
-        public void setMessages(List<Message> messages) {
+        public Builder setMessages(List<Message> messages) {
             this.messages = requireNonNull(messages);
+            return this;
         }
 
         public Builder addMessage(Message messages) {
