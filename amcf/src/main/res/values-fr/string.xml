@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="facebook_app_id">1046614502109093</string>
-    <string name="cencel_login">Login annulé</string>
+    <string name="cancel_login">Login annulé</string>
 </resources>

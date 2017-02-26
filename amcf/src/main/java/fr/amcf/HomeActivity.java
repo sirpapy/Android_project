@@ -19,13 +19,12 @@ import fr.amcf.contactview.ContactActivity;
 import fr.amcf.integration.facebook.LoginFacebookActivity;
 
 
-public class HomeActiviry extends Activity {
+public class HomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_activiry);
-        FacebookSdk.setApplicationId("1046614502109093");
+        setContentView(R.layout.activity_home_activity);
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
@@ -39,15 +38,15 @@ public class HomeActiviry extends Activity {
     }
 
     public void startSendSMSActivity(View v) {
-        startActivity(new Intent(HomeActiviry.this, SMSSender.class));
+        startActivity(new Intent(HomeActivity.this, SMSSender.class));
     }
 
     public void displayConversation(View v){
-        startActivity(new Intent(HomeActiviry.this, DisplayConversation.class));
+        startActivity(new Intent(HomeActivity.this, DisplayConversation.class));
     }
 
     public void startListSMSActivity(View v) {
-        startActivity(new Intent(HomeActiviry.this, SMSList.class));
+        startActivity(new Intent(HomeActivity.this, SMSList.class));
     }
 
     public void goBackToLoginScreen(View v) {
