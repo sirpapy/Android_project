@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -47,6 +48,9 @@
         <activity android:name=".SMSList" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".LoginFacebookActivity" />
+        <activity android:name=".DisplayConversation" />
+        <activity android:name=".DirectCommunicationAcitivty" />
+
     </application>
 
 </manifest>

@@ -12,7 +12,7 @@ import fr.amcf.R;
 /**
  * Created by dchesnea on 15/02/2017.
  */
-public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
+class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
     private final GestureDetector gestureDetector;
     private final ClickListener clickListener;
