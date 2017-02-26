@@ -22,11 +22,11 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
     public MessageAdapter(Activity context,int resource,List<Message> messages ){
         super(context,resource,messages);
-        this.activity = activity;
+        this.activity = context;
         this.messages = messages;
     }
 
-   /* @Override
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -35,7 +35,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         Message message = getItem(position);
         int viewType = getItemViewType(position);
 
-        if (message.isMine()) {
+        if (message.getBody().equals("hello")) {
             layoutResource = R.layout.item_chat_left;
         } else {
             layoutResource = R.layout.item_chat_right;
@@ -74,5 +74,5 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         public ViewHolder(View v) {
             msg = (TextView) v.findViewById(R.id.txt_msg);
         }
-    }*/
+    }
 }

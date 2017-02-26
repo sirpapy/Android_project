@@ -9,16 +9,24 @@ public class Message implements Comparable<Message> {
     private String body;
     private MessageType type;
     private long date;
+    private boolean isMine;
 
-    public Message(String body, MessageType type, long date) {
+    public Message(String body, MessageType type, long date,boolean isMine) {
+        this.body = body;
+        this.type = type;
+        this.date = date;
+        this.isMine = isMine;
+    }
+
+    public Message(String body, MessageType type, long date){
         this.body = body;
         this.type = type;
         this.date = date;
     }
+
     public Message(String body, MessageType type) {
         this.body = body;
         this.type = type;
-        this.date = date;
     }
 
     public long getDate() {
@@ -45,4 +53,9 @@ public class Message implements Comparable<Message> {
     public int compareTo(Message other) {
         return (date < other.date) ? -1 : ((date == other.date) ? 0 : 1);
     }
+
+    public boolean isMine() {
+        return isMine;
+    }
+
 }

@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,7 @@ import java.util.Date;
 import fr.amcf.direct_chat_package.ChatAdapter;
 import fr.amcf.direct_chat_package.ChatMessage;
 import fr.amcf.message.Message;
+import fr.amcf.message.MessageAdapter;
 import fr.amcf.message.MessageType;
 
 /**
@@ -31,6 +33,7 @@ public class DisplayConversation extends AppCompatActivity {
     private EditText messageEdit;
     private ListView messageContainer;
     private Button sendBtn;
+    boolean isMine = true;
     private ArrayAdapter<Message> adapter;
     private ArrayList<Message> messageHistory;
 
@@ -38,25 +41,31 @@ public class DisplayConversation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_conversation);
+
         messageContainer = (ListView) findViewById(R.id.messageContainer);
         messageEdit = (EditText) findViewById(R.id.messageEdit);
         sendBtn = (Button) findViewById(R.id.sendButton);
         messageHistory = new ArrayList<>();
+        adapter = new MessageAdapter(this,R.layout.item_chat_left,messageHistory);
+        messageContainer.setAdapter(adapter);
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = messageEdit.getText().toString();
-                if(TextUtils.isEmpty(message)){
-                    return;
+                if(messageEdit.getText().toString().trim().equals("")){
+                    Toast.makeText(DisplayConversation.this, "Please input some text...", Toast.LENGTH_SHORT).show();
                 }
-                Message msg = new Message(message,MessageType.SMS,System.currentTimeMillis());
+                Message msg = new Message(messageEdit.getText().toString(),MessageType.SMS,System.currentTimeMillis());
+                messageHistory.add(msg);
+                adapter.notifyDataSetChanged();
+                messageEdit.setText("");
+                if (isMine) {
+                    isMine = false;
+                } else {
+                    isMine = true;
+                }
             }
         });
     }
-
-
-
-
 
 }
