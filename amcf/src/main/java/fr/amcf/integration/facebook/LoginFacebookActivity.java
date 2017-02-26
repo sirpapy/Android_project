@@ -1,4 +1,4 @@
-package fr.amcf;
+package fr.amcf.integration.facebook;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import fr.amcf.HomeActiviry;
+import fr.amcf.R;
 
 public class LoginFacebookActivity extends AppCompatActivity {
 

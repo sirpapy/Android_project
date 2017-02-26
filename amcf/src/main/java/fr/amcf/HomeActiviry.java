@@ -16,6 +16,7 @@ import com.facebook.login.LoginManager;
 
 import fr.amcf.contactdata.ContactProviders;
 import fr.amcf.contactview.ContactActivity;
+import fr.amcf.integration.facebook.LoginFacebookActivity;
 
 
 public class HomeActiviry extends Activity {
