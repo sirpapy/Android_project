@@ -17,9 +17,6 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
         <activity
                 android:name=".contactview.ContactActivity"
                 android:label="@string/app_name"
@@ -66,7 +63,7 @@
         </receiver>
 
         <activity
-                android:name=".NavigationActivity"
+                android:name=".MainActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
