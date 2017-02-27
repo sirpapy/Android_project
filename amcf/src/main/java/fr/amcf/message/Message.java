@@ -1,10 +1,13 @@
 package fr.amcf.message;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Sirpapy on 19/02/2017.
  */
 
-public class Message implements Comparable<Message> {
+public class Message implements Comparable<Message>{
 
     private String body;
     private MessageType type;
@@ -57,5 +60,38 @@ public class Message implements Comparable<Message> {
     public boolean isMine() {
         return isMine;
     }
+
+    /*public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(body);
+        out.writeValue(type);
+        out.writeLong(date);
+        boolean[] arraybool = {isMine};
+        out.writeBooleanArray(arraybool);
+    }
+
+    public static final Parcelable.Creator<Message> CREATOR
+            = new Parcelable.Creator<Message>() {
+        public Message createFromParcel(Parcel in) {
+            return new Message(in);
+        }
+
+        public Message[] newArray(int size) {
+            return new Message[size];
+        }
+    };
+
+    private Message(Parcel in) {
+        body = in.readString();
+        //type = in.readValue();
+        date = in.readLong();
+        boolean[] arraybool = new boolean[1];
+        in.readBooleanArray(arraybool);
+        isMine = arraybool[0];
+    }*/
+
 
 }

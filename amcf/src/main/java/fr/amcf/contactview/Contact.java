@@ -1,5 +1,8 @@
 package fr.amcf.contactview;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import java.util.ArrayList;
@@ -64,6 +67,37 @@ public class Contact {
     public static Builder builder() {
         return new Builder();
     }
+
+
+    /*public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(name);
+        out.writeString(email);
+        out.writeString(primaryPhoneNumber);
+        out.writeArray(messages.toArray());
+    }
+
+    public static final Parcelable.Creator<Contact> CREATOR
+            = new Parcelable.Creator<Contact>() {
+        public Contact createFromParcel(Parcel in) {
+            return new Contact(in);
+        }
+
+        public Contact[] newArray(int size) {
+            return new Contact[size];
+        }
+    };
+
+    private Contact(Parcel in) {
+        name = in.readString();
+        email = in.readString();
+        primaryPhoneNumber = in.readString();
+        messages = in.readArray(null);
+    }*/
+
 
     public static class Builder {
         private String name;
