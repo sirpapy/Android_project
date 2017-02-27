@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.facebook.*;
@@ -15,14 +14,14 @@ import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
-import fr.amcf.HomeActivity;
+import fr.amcf.MainActivity;
 import fr.amcf.R;
 
 public class LoginFacebookActivity extends FragmentActivity {
     private static final String PERMISSION = "publish_actions";
     private static String TAG = LoginFacebookActivity.class.getSimpleName();
     private final String PENDING_ACTION_BUNDLE_KEY =
-            "com.example.hellofacebook:PendingAction";
+            "fr.amcf.LoginFacebookActivity:PendingAction";
     private LoginButton loginButton;
     private Button postStatusUpdateButton;
     private Button postPhotoButton;
@@ -41,17 +40,11 @@ public class LoginFacebookActivity extends FragmentActivity {
         setContentView(R.layout.activity_login_facebook);
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.b_facebook_log_in);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginButton.setVisibility(View.INVISIBLE);
-            }
-        });
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
             @Override
             public void onSuccess(LoginResult loginResult) {
-                goBackToMainActivity();
+                updateUI();
             }
 
             @Override
@@ -87,17 +80,17 @@ public class LoginFacebookActivity extends FragmentActivity {
     private void updateUI() {
         boolean enableButtons = AccessToken.getCurrentAccessToken() != null;
 
-        postStatusUpdateButton.setEnabled(enableButtons || canPresentShareDialog);
-        postPhotoButton.setEnabled(enableButtons || canPresentShareDialogWithPhotos);
-
-        Profile profile = Profile.getCurrentProfile();
-        if (enableButtons && profile != null) {
-            profilePictureView.setProfileId(profile.getId());
-            greeting.setText(getString(R.string.hello_user, profile.getFirstName()));
-        } else {
-            profilePictureView.setProfileId(null);
-            greeting.setText(null);
-        }
+//        postStatusUpdateButton.setEnabled(enableButtons || canPresentShareDialog);
+//        postPhotoButton.setEnabled(enableButtons || canPresentShareDialogWithPhotos);
+//
+//        Profile profile = Profile.getCurrentProfile();
+//        if (enableButtons && profile != null) {
+//            profilePictureView.setProfileId(profile.getId());
+//            greeting.setText(getString(R.string.hello_user, profile.getFirstName()));
+//        } else {
+//            profilePictureView.setProfileId(null);
+//            greeting.setText(null);
+//        }
     }
 
     private void handlePendingAction() {
@@ -155,7 +148,7 @@ public class LoginFacebookActivity extends FragmentActivity {
     }
 
     private void goBackToMainActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

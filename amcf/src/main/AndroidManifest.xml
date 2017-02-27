@@ -17,32 +17,31 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
 
-        <activity android:name=".HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
                 android:name=".contactview.ContactActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>-->
-            <!--&lt;!&ndash;<action android:name="android.intent.action.MAIN" />&ndash;&gt;-->
 
-            <!--&lt;!&ndash;<category android:name="android.intent.category.LAUNCHER" />&ndash;&gt;-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- &lt;!&ndash;<action android:name="android.intent.action.MAIN" />&ndash;&gt; -->
+
+
+            <!-- &lt;!&ndash;<category android:name="android.intent.category.LAUNCHER" />&ndash;&gt; -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".SMSSender"/>
         <activity android:name=".SMSList"/>
         <activity android:name=".NotificationActivity"/>
-        <activity android:name=".integration.facebook.LoginFacebookActivity"
-                  android:label="@string/app_name"/>
-        <!--below are configs for loginFacebook-->
-        <!--android:configChanges=-->
-        <!--"keyboard|keyboardHidden|screenLayout|screenSize|orientation"-->
-        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
+        <activity
+                android:name=".integration.facebook.LoginFacebookActivity"
+                android:label="@string/app_name"/>
+        <!-- below are configs for loginFacebook -->
+        <!-- android:configChanges= -->
+        <!-- "keyboard|keyboardHidden|screenLayout|screenSize|orientation" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" -->
         <activity android:name=".DisplayConversation"/>
         <activity android:name=".DirectCommunicationAcitivty"/>
 
@@ -53,9 +52,11 @@
                 android:name="com.facebook.sdk.ApplicationName"
                 android:value="@string/facebook_app_name"/>
 
-        <provider android:authorities="com.facebook.app.FacebookContentProvider1046614502109093"
-                  android:name="com.facebook.FacebookContentProvider"
-                  android:exported="true"/>
+        <provider
+                android:name="com.facebook.FacebookContentProvider"
+                android:authorities="com.facebook.app.FacebookContentProvider1046614502109093"
+                android:exported="true"/>
+
         <receiver
                 android:name=".IncomingSmsReceiver"
                 android:exported="true">
@@ -64,6 +65,16 @@
             </intent-filter>
         </receiver>
 
+        <activity
+                android:name=".NavigationActivity"
+                android:label="@string/app_name"
+                android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
