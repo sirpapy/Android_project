@@ -59,8 +59,8 @@ public class DisplayConversation extends AppCompatActivity {
         if(savedInstanceState != null){
             messageEdit.setText(savedInstanceState.getString("messageToSend"));
             contact = (Contact) savedInstanceState.get("contact");
-            messageHistory = contact.getMessages();
-            adapter.notifyDataSetChanged();
+            /*messageHistory = contact.getMessages();
+            adapter.notifyDataSetChanged();*/
         }
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -110,10 +110,10 @@ public class DisplayConversation extends AppCompatActivity {
         savedInstanceState.putString("messageToSend",messageEdit.getText().toString());
         /*if(contact == null){
             contact = new Contact("nicolas","bla","0634105760");
-        }*/
+        }
         for(Message m : messageHistory){
             contact.getMessages().add(m);
-        }
+        }*/
         savedInstanceState.putParcelable("contact",contact);
     }
 

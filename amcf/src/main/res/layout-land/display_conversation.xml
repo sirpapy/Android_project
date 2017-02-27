@@ -24,7 +24,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.1"
         android:orientation="horizontal"
-        android:background="@color/orange_light">
+        >
 
         <EditText
             android:id="@+id/messageEdit"
@@ -38,9 +38,16 @@
 
         <Button
             android:id="@+id/sendButton"
-            android:layout_width="71dp"
-            android:layout_height="match_parent"
+            android:text="Send"
+            android:layout_width="109dp"
+            android:layout_height="45dp"
             android:background="@drawable/send_button"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
             />
     </LinearLayout>
 

@@ -28,6 +28,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.amcf.contactdata.ContactProviders;
@@ -107,9 +108,15 @@ public class MainActivity extends AppCompatActivity
         });
 
         /*List<Contact> contacts = ContactProviders.getLastUseContacts();
-        ListView mListView = (ListView) findViewById(R.id.lastContactContainer);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_main,contacts);
-        mListView.setAdapter(adapter);*/
+        if(contacts.size() > 0) {
+            List<String> nameList = new ArrayList<>();
+            for (Contact c : contacts) {
+                nameList.add(c.getName());
+            }
+            ListView mListView = (ListView) findViewById(R.id.lastContactContainer);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.content_navigation, nameList);
+            mListView.setAdapter(adapter);
+        }*/
 
 
     }
