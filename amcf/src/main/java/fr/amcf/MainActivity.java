@@ -1,16 +1,26 @@
 package fr.amcf;
 
-
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import com.facebook.*;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookAuthorizationException;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -18,16 +28,19 @@ import fr.amcf.contactdata.ContactProviders;
 import fr.amcf.contactview.ContactActivity;
 import fr.amcf.integration.facebook.LoginFacebookActivity;
 
+import static fr.amcf.R.id.fab;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private CallbackManager callbackManager;
     private PendingAction pendingAction = PendingAction.NONE;
-
+    private FloatingActionButton actionButtonSendSMS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         AppEventsLogger.activateApp(this);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)) {
@@ -37,6 +50,20 @@ public class MainActivity extends Activity {
         } else {
             ContactProviders.initContacts(this);
         }
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        initSendSMSActionButton();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -51,7 +78,6 @@ public class MainActivity extends Activity {
                     showAlert();
                     pendingAction = PendingAction.NONE;
                 }
-                updateUI();
             }
 
             @Override
@@ -61,7 +87,6 @@ public class MainActivity extends Activity {
                     showAlert();
                     pendingAction = PendingAction.NONE;
                 }
-                updateUI();
             }
 
             private void showAlert() {
@@ -75,43 +100,72 @@ public class MainActivity extends Activity {
         });
     }
 
-    private void updateUI() {
-        boolean enableButtons = AccessToken.getCurrentAccessToken() != null;
-//
-//        postStatusUpdateButton.setEnabled(enableButtons || canPresentShareDialog);
-//        postPhotoButton.setEnabled(enableButtons || canPresentShareDialogWithPhotos);
-//
-//        Profile profile = Profile.getCurrentProfile();
-//        if (enableButtons && profile != null) {
-//            profilePictureView.setProfileId(profile.getId());
-//            greeting.setText(getString(R.string.hello_user, profile.getFirstName()));
-//        } else {
-//            profilePictureView.setProfileId(null);
-//            greeting.setText(null);
-//        }
+    private void initSendSMSActionButton() {
+        actionButtonSendSMS = (FloatingActionButton) findViewById(fab);
+        actionButtonSendSMS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SMSSender.class));
+            }
+        });
     }
 
-    public void startSendSMSActivity(View v) {
-        startActivity(new Intent(MainActivity.this, SMSSender.class));
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
-    public void displayConversation(View v) {
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.navigation, menu);
+        return true;
     }
 
-    public void startListSMSActivity(View v) {
-        startActivity(new Intent(MainActivity.this, SMSList.class));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
-    public void openNavigation(View v) {
-        Intent intent = new Intent(this, NavigationActivity.class);
-        startActivity(intent);
-    }
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
 
-    public void goBackToLoginScreen(View v) {
-        Intent intent = new Intent(this, LoginFacebookActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        switch (id){
+            case R.id.nav_contact_list:
+                startActivity(new Intent(this, ContactActivity.class));
+                break;
+            case R.id.nav_sms_list:
+                startActivity(new Intent(MainActivity.this, SMSList.class));
+                break;
+            case R.id.nav_display_conversation:
+                startActivity(new Intent(MainActivity.this, DisplayConversation.class));
+                break;
+            case R.id.nav_facebook_log:
+                startActivity(new Intent(MainActivity.this, LoginFacebookActivity.class));
+                break;
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override
@@ -120,13 +174,6 @@ public class MainActivity extends Activity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void logoutFacebookButtonClick(View v) {
-        LoginManager.getInstance().logOut();
-    }
-
-    public void startContact(View view) {
-        startActivity(new Intent(this, ContactActivity.class));
-    }
 
     private enum PendingAction {
         NONE,
