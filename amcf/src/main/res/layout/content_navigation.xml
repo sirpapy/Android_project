@@ -14,4 +14,12 @@
         tools:showIn="@layout/app_bar_navigation"
         tools:context="fr.amcf.MainActivity">
 
+
+    <ListView
+        android:id="@+id/lastContactContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:transcriptMode="alwaysScroll"/>
 </RelativeLayout>

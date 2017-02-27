@@ -17,6 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
 import com.facebook.CallbackManager;
 import com.facebook.FacebookAuthorizationException;
 import com.facebook.FacebookCallback;
@@ -24,7 +27,11 @@ import com.facebook.FacebookException;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+
+import java.util.List;
+
 import fr.amcf.contactdata.ContactProviders;
+import fr.amcf.contactview.Contact;
 import fr.amcf.contactview.ContactActivity;
 import fr.amcf.integration.facebook.LoginFacebookActivity;
 
@@ -98,6 +105,13 @@ public class MainActivity extends AppCompatActivity
             }
 
         });
+
+        /*List<Contact> contacts = ContactProviders.getLastUseContacts();
+        ListView mListView = (ListView) findViewById(R.id.lastContactContainer);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, R.layout.activity_main,contacts);
+        mListView.setAdapter(adapter);*/
+
+
     }
 
     private void initSendSMSActionButton() {

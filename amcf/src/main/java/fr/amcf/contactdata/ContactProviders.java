@@ -6,9 +6,14 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+
 import fr.amcf.contactview.Contact;
+
+import static com.facebook.internal.CallbackManagerImpl.RequestCodeOffset.Message;
 
 /**
  * Created by dchesnea on 21/02/2017.
@@ -78,5 +83,25 @@ public class ContactProviders {
     public static List<Contact> getAll() {
         checkState();
         return contacts;
+    }
+
+    public static List<Contact> getLastUseContacts(){
+        List<Contact> list = contacts;
+        for(Contact c : list){
+            if(c.getMessages().size() == 0){
+                list.remove(c);
+            }
+        }
+
+        Collections.sort(list, new Comparator<Contact>() {
+            @Override
+            public int compare(Contact o1, Contact o2) {
+                if( o1.getMessages().get(o1.getMessages().size()-1).getDate() >= o2.getMessages().get(o2.getMessages().size()-1).getDate()){
+                    return -1;
+                }
+                return 1;
+            }
+        });
+        return list;
     }
 }
