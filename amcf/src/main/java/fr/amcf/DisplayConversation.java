@@ -45,7 +45,7 @@ public class DisplayConversation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_conversation);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         /*Bundle b = getIntent().getExtras();
         contact = (Contact) b.get("contact");*/
 
