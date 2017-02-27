@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import fr.amcf.contactview.Contact;
 import fr.amcf.direct_chat_package.ChatAdapter;
@@ -37,7 +38,7 @@ public class DisplayConversation extends AppCompatActivity {
     private Button sendBtn;
     boolean isMine = true;
     private ArrayAdapter<Message> adapter;
-    private ArrayList<Message> messageHistory;
+    private List<Message> messageHistory;
     private Contact contact;
 
     @Override
@@ -57,7 +58,9 @@ public class DisplayConversation extends AppCompatActivity {
 
         if(savedInstanceState != null){
             messageEdit.setText(savedInstanceState.getString("messageToSend"));
-           // contact = (Contact) savedInstanceState.get("contact");
+            contact = (Contact) savedInstanceState.get("contact");
+            messageHistory = contact.getMessages();
+            adapter.notifyDataSetChanged();
         }
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +108,13 @@ public class DisplayConversation extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putString("messageToSend",messageEdit.getText().toString());
+        /*if(contact == null){
+            contact = new Contact("nicolas","bla","0634105760");
+        }*/
+        for(Message m : messageHistory){
+            contact.getMessages().add(m);
+        }
+        savedInstanceState.putParcelable("contact",contact);
     }
 
 }

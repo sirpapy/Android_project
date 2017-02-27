@@ -16,7 +16,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Created by dchesnea on 09/02/2017.
  */
-public class Contact {
+public class Contact implements  Parcelable{
     private final String name;
     private final String email;
     private final String primaryPhoneNumber;
@@ -27,6 +27,13 @@ public class Contact {
         email = builder.email;
         primaryPhoneNumber = builder.primaryPhoneNumber;
         messages = Collections.unmodifiableList(builder.messages);
+    }
+
+    public Contact(String name, String email, String primaryPhoneNumber){
+        this.name = name;
+        this.email = email;
+        this.primaryPhoneNumber = primaryPhoneNumber;
+        messages = new ArrayList<>();
     }
 
     public boolean isPhoneNumberEquals(String phoneNumber) {
@@ -69,7 +76,7 @@ public class Contact {
     }
 
 
-    /*public int describeContents() {
+    public int describeContents() {
         return 0;
     }
 
@@ -77,7 +84,7 @@ public class Contact {
         out.writeString(name);
         out.writeString(email);
         out.writeString(primaryPhoneNumber);
-        out.writeArray(messages.toArray());
+        out.writeList(messages);
     }
 
     public static final Parcelable.Creator<Contact> CREATOR
@@ -95,8 +102,9 @@ public class Contact {
         name = in.readString();
         email = in.readString();
         primaryPhoneNumber = in.readString();
-        messages = in.readArray(null);
-    }*/
+        messages = new ArrayList<>();
+        in.readList(messages,null);
+    }
 
 
     public static class Builder {

@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by Sirpapy on 19/02/2017.
  */
 
-public class Message implements Comparable<Message>{
+public class Message implements Comparable<Message>,Parcelable{
 
     private String body;
     private MessageType type;
@@ -61,7 +61,7 @@ public class Message implements Comparable<Message>{
         return isMine;
     }
 
-    /*public int describeContents() {
+    public int describeContents() {
         return 0;
     }
 
@@ -86,12 +86,12 @@ public class Message implements Comparable<Message>{
 
     private Message(Parcel in) {
         body = in.readString();
-        //type = in.readValue();
+        type = (MessageType) in.readValue(null);
         date = in.readLong();
         boolean[] arraybool = new boolean[1];
         in.readBooleanArray(arraybool);
         isMine = arraybool[0];
-    }*/
+    }
 
 
 }
