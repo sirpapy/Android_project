@@ -29,12 +29,12 @@ public class Contact implements  Parcelable{
         messages = Collections.unmodifiableList(builder.messages);
     }
 
-    public Contact(String name, String email, String primaryPhoneNumber){
-        this.name = name;
-        this.email = email;
-        this.primaryPhoneNumber = primaryPhoneNumber;
-        messages = new ArrayList<>();
-    }
+//    public Contact(String name, String email, String primaryPhoneNumber){
+//        this.name = name;
+//        this.email = email;
+//        this.primaryPhoneNumber = primaryPhoneNumber;
+//        messages = new ArrayList<>();
+//    }
 
     public boolean isPhoneNumberEquals(String phoneNumber) {
         requireNonNull(phoneNumber);
@@ -150,9 +150,6 @@ public class Contact implements  Parcelable{
         }
 
         public Contact build() {
-            if (primaryPhoneNumber.length() <= 9) {
-                throw new IllegalArgumentException("Please send a right len for phone number.");
-            }
             return new Contact(this);
         }
     }
