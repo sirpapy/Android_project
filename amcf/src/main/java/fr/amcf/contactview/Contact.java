@@ -150,8 +150,8 @@ public class Contact implements  Parcelable{
         }
 
         public Contact build() {
-            if (primaryPhoneNumber.startsWith("+")) {
-                primaryPhoneNumber = "0" + primaryPhoneNumber.substring(1);
+            if (primaryPhoneNumber.length() <= 9) {
+                throw new IllegalArgumentException("Please send a right len for phone number.");
             }
             return new Contact(this);
         }
