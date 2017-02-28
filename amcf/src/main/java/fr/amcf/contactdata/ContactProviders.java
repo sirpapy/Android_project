@@ -93,15 +93,17 @@ public class ContactProviders {
             }
         }
 
-        Collections.sort(list, new Comparator<Contact>() {
-            @Override
-            public int compare(Contact o1, Contact o2) {
-                if( o1.getMessages().get(o1.getMessages().size()-1).getDate() >= o2.getMessages().get(o2.getMessages().size()-1).getDate()){
-                    return -1;
+        if(list.isEmpty()) {
+            Collections.sort(list, new Comparator<Contact>() {
+                @Override
+                public int compare(Contact o1, Contact o2) {
+                    if (o1.getMessages().get(o1.getMessages().size() - 1).getDate() >= o2.getMessages().get(o2.getMessages().size() - 1).getDate()) {
+                        return -1;
+                    }
+                    return 1;
                 }
-                return 1;
-            }
-        });
+            });
+        }
         return list;
     }
 }

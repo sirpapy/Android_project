@@ -10,7 +10,7 @@ import fr.amcf.R;
 /**
  * Created by dchesnea on 14/02/2017.
  */
-class ItemTouchEventCallback extends ItemTouchHelper.Callback {
+public class ItemTouchEventCallback extends ItemTouchHelper.Callback {
 
     private final ItemTouchHelperAdapter recyclerAdapter;
 

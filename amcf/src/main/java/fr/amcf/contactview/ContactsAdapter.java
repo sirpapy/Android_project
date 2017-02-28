@@ -15,7 +15,7 @@ import fr.amcf.R;
 /**
  * Created by dchesnea on 15/02/2017.
  */
-class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.AmcfViewHolder> implements ItemTouchHelperAdapter {
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.AmcfViewHolder> implements ItemTouchHelperAdapter {
 
     private final List<Contact> contactsList;
 

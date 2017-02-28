@@ -13,12 +13,17 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookAuthorizationException;
@@ -34,6 +39,10 @@ import java.util.List;
 import fr.amcf.contactdata.ContactProviders;
 import fr.amcf.contactview.Contact;
 import fr.amcf.contactview.ContactActivity;
+import fr.amcf.contactview.ContactsAdapter;
+import fr.amcf.contactview.DividerItemDecoration;
+import fr.amcf.contactview.ItemTouchEventCallback;
+import fr.amcf.contactview.RecyclerTouchListener;
 import fr.amcf.integration.facebook.LoginFacebookActivity;
 
 import static fr.amcf.R.id.fab;
@@ -44,6 +53,11 @@ public class MainActivity extends AppCompatActivity
     private CallbackManager callbackManager;
     private PendingAction pendingAction = PendingAction.NONE;
     private FloatingActionButton actionButtonSendSMS;
+
+    private List<Contact> contactList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private ContactsAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,8 +131,52 @@ public class MainActivity extends AppCompatActivity
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.content_navigation, nameList);
             mListView.setAdapter(adapter);
         }*/
+        recyclerView = (RecyclerView) findViewById(R.id.lastContactContainer);
 
+        adapter = new ContactsAdapter(contactList);
 
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Contact contact = contactList.get(position);
+                Toast.makeText(getApplicationContext(), contact.getName() + " selected :)", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                //TODO
+            }
+        }));
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)) {
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, 2);
+            }
+        } else {
+            initContacts();
+        }
+        ItemTouchHelper.Callback callback = new ItemTouchEventCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recyclerView);
+
+    }
+
+    private void initContacts() {
+        ContactProviders.initContacts(this);
+        // a changer pour recuperer les dernier contacts getLastUseContacts
+        List<Contact> contacts = ContactProviders.getAll();
+        if(!contacts.isEmpty()) {
+            contactList.addAll(contacts);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void initSendSMSActionButton() {
