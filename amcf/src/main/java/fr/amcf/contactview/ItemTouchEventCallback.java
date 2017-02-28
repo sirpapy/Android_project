@@ -25,13 +25,13 @@ class ItemTouchEventCallback extends ItemTouchHelper.Callback {
 
     @Override
     public boolean isItemViewSwipeEnabled() {
-        return true;
+        return false;
     }
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipeFlags = ItemTouchHelper.END; //ItemTouchHelper.START |
+        int swipeFlags =0;// ItemTouchHelper.END; //ItemTouchHelper.START |
         return makeMovementFlags(dragFlags, swipeFlags);
     }
 
@@ -45,7 +45,7 @@ class ItemTouchEventCallback extends ItemTouchHelper.Callback {
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         TextView name = (TextView) viewHolder.itemView.findViewById(R.id.name);
-        name.setText("View contact messages ?");
+//        name.setText("View contact messages ?");
         recyclerAdapter.onItemDismiss(viewHolder.getAdapterPosition());
     }
 

@@ -1,11 +1,11 @@
 package fr.amcf.contactview;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,29 +48,28 @@ class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.AmcfViewHolde
     }
 
     public class AmcfViewHolder extends RecyclerView.ViewHolder {
-        private final TextView name, phoneNumber, email;
+
+        private final CustomPagerAdapter customPagerAdapter;
 
         public AmcfViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.name);
-            email = (TextView) view.findViewById(R.id.email);
-            phoneNumber = (TextView) view.findViewById(R.id.phoneNumber);
+
+            ViewPager viewPager = (ViewPager) itemView.findViewById(R.id.swipableRecyclerItem);
+            customPagerAdapter = new CustomPagerAdapter(view.getContext());
+            viewPager.setAdapter(customPagerAdapter);
         }
     }
 
     @Override
     public AmcfViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.i("TEST", "VIEW TYPE=" + viewType);
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_list_row, parent, false);
         return new AmcfViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(AmcfViewHolder amcfViewHolder, int position) {
-        Contact movie = contactsList.get(position);
-        amcfViewHolder.name.setText(movie.getName());
-        amcfViewHolder.email.setText(movie.getEmail());
-        amcfViewHolder.phoneNumber.setText(movie.getPrimaryPhoneNumber());
+        Contact contact = contactsList.get(position);
+        amcfViewHolder.customPagerAdapter.setContactValues(contact);
     }
 
     @Override
