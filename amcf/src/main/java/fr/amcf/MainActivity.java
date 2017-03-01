@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<Contact> contactList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private ContactsAdapter adapter;
+    private RecentContactsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,19 +121,9 @@ public class MainActivity extends AppCompatActivity
 
         });
 
-        /*List<Contact> contacts = ContactProviders.getLastUseContacts();
-        if(contacts.size() > 0) {
-            List<String> nameList = new ArrayList<>();
-            for (Contact c : contacts) {
-                nameList.add(c.getName());
-            }
-            ListView mListView = (ListView) findViewById(R.id.lastContactContainer);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.content_navigation, nameList);
-            mListView.setAdapter(adapter);
-        }*/
         recyclerView = (RecyclerView) findViewById(R.id.lastContactContainer);
 
-        adapter = new ContactsAdapter(contactList);
+        adapter = new RecentContactsAdapter(contactList);
 
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
