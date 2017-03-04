@@ -1,6 +1,7 @@
 package fr.amcf;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +38,10 @@ public class CustomRecentContactsAdapter extends PagerAdapter {
             this.email.setText(contact.getEmail());
             this.phoneNumber.setText(contact.getPrimaryPhoneNumber());
         } else if (position == 1) {
-            name = (TextView) layout.findViewById(R.id.contact_click_name);
-            name.setText(contact.getName());
+            /*name = (TextView) layout.findViewById(R.id.contact_click_name);
+            name.setText(contact.getName());*/
+           /* Intent intent = new Intent(mContext, DisplayConversation.class);
+            mContext.startActivity(intent);*/
         }
         collection.addView(layout);
         return layout;

@@ -12,25 +12,5 @@
         android:layout_height="match_parent"
         android:text="right" />
 
-    <Button
-        android:id="@+id/contact.click.newmessage"
-        android:paddingRight="2dp"
-        android:paddingLeft="22dp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="@string/contact.click.newmessage"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/contact.click.call"
-        android:paddingRight="2dp"
-        android:paddingLeft="22dp"
-        android:layout_height="match_parent"
-        android:text="@string/contact.click.call"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/contact.click.newmessage"
-        android:layout_width="wrap_content" />
 
 </LinearLayout>
