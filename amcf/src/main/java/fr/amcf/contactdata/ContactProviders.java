@@ -10,11 +10,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
-import fr.amcf.contactview.Contact;
-
-import static com.facebook.internal.CallbackManagerImpl.RequestCodeOffset.Message;
-
 /**
  * Created by dchesnea on 21/02/2017.
  */
@@ -46,11 +41,12 @@ public class ContactProviders {
                 if (cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
                     Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                             null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
-                    while (pCur.moveToNext()) {
+                    pCur.moveToNext();
+                    //while (pCur.moveToNext()) {
                         String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         builders.add(Contact.builder().setName(name)
                                 .setEmail(email).setPrimaryPhoneNumber(phoneNo).build());
-                    }
+                    //}
                     pCur.close();
                 }
             }

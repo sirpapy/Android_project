@@ -2,7 +2,7 @@ package fr.amcf;
 
 import org.junit.Test;
 
-import fr.amcf.contactview.Contact;
+import fr.amcf.contactdata.Contact;
 
 import static org.junit.Assert.assertTrue;
 

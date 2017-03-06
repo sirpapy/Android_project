@@ -11,11 +11,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Random;
 
-import fr.amcf.direct_chat_package.ChatAdapter;
-import fr.amcf.direct_chat_package.ChatMessage;
-import fr.amcf.direct_chat_package.CommonMethods;
-import fr.amcf.direct_chat_package.Serveur;
-import fr.amcf.direct_chat_package.Utils;
+import fr.amcf.directchat.ChatAdapter;
+import fr.amcf.directchat.ChatMessage;
+import fr.amcf.directchat.CommonMethods;
+import fr.amcf.directchat.Serveur;
+import fr.amcf.directchat.Utils;
 
 
 public class DirectCommunicationAcitivty extends AppCompatActivity {

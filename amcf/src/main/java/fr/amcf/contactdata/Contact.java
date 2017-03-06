@@ -1,4 +1,4 @@
-package fr.amcf.contactview;
+package fr.amcf.contactdata;
 
 import android.os.Parcel;
 import android.os.Parcelable;

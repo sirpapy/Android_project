@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import fr.amcf.R;
+import fr.amcf.contactdata.Contact;
 
 public class CustomPagerAdapter extends PagerAdapter {
     private TextView name, phoneNumber, email;

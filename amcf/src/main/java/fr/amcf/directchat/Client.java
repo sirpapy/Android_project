@@ -1,4 +1,4 @@
-package fr.amcf.direct_chat_package;
+package fr.amcf.directchat;
 
 import android.os.AsyncTask;
 import android.widget.TextView;

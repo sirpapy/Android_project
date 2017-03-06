@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import fr.amcf.contactdata.ContactProviders;
-import fr.amcf.contactview.Contact;
+import fr.amcf.contactdata.Contact;
 
 public class SMSList extends Activity implements AdapterView.OnItemClickListener {
 

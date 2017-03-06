@@ -1,4 +1,4 @@
-package fr.amcf.direct_chat_package;
+package fr.amcf.directchat;
 import java.io.*;
 import java.net.*;
 import java.util.*;

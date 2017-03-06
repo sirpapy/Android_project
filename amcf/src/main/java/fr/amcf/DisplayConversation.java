@@ -1,28 +1,19 @@
 package fr.amcf;
 
-import android.app.Activity;
-import android.icu.text.DateFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import fr.amcf.contactview.Contact;
-import fr.amcf.direct_chat_package.ChatAdapter;
-import fr.amcf.direct_chat_package.ChatMessage;
+import fr.amcf.contactdata.Contact;
 import fr.amcf.message.Message;
 import fr.amcf.message.MessageAdapter;
 import fr.amcf.message.MessageType;

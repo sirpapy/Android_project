@@ -1,4 +1,4 @@
-package fr.amcf.direct_chat_package;
+package fr.amcf.directchat;
 
 /**
  * Created by andoye on 17/02/2017.
