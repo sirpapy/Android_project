@@ -1,12 +1,15 @@
 package fr.amcf.contactview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import fr.amcf.DisplayConversation;
 import fr.amcf.R;
 import fr.amcf.contactdata.Contact;
 
@@ -34,6 +37,17 @@ public class CustomPagerAdapter extends PagerAdapter {
         } else if (position == 1) {
             name = (TextView) layout.findViewById(R.id.contact_click_name);
             name.setText(contact.getName());
+
+            Button newMsgBtn = (Button) layout.findViewById(R.id.contact_click_newmessage);
+            newMsgBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, DisplayConversation.class);
+                    intent.putExtra("contact", contact);
+                    mContext.startActivity(intent);
+                }
+            });
+
         }
         collection.addView(layout);
         return layout;
