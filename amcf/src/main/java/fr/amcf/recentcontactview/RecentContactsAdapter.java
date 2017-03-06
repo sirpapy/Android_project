@@ -2,6 +2,7 @@ package fr.amcf.recentcontactview;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,9 +25,9 @@ import fr.amcf.contactview.ItemTouchHelperAdapter;
 public class RecentContactsAdapter extends RecyclerView.Adapter<RecentContactsAdapter.RecentViewHolder> implements ItemTouchHelperAdapter {
 
     private final List<Contact> contactsList;
-    private Context context;
+    private final Context context;
 
-    public RecentContactsAdapter(List<Contact> moviesList,Context context) {
+    public RecentContactsAdapter(List<Contact> moviesList, Context context) {
         this.context = context;
         if (moviesList != null) {
             this.contactsList = moviesList;
@@ -51,8 +52,9 @@ public class RecentContactsAdapter extends RecyclerView.Adapter<RecentContactsAd
 
     @Override
     public void onItemDismiss(int position) {
-//        notifyItemRemoved(position);
+        Contact contact = contactsList.get(position);
         Intent intent = new Intent(context, DisplayConversation.class);
+        intent.putExtra("contact", contact);
         context.startActivity(intent);
         notifyItemChanged(position);
     }
@@ -82,7 +84,6 @@ public class RecentContactsAdapter extends RecyclerView.Adapter<RecentContactsAd
         amcfViewHolder.email.setText(movie.getEmail());
         amcfViewHolder.phoneNumber.setText(movie.getPrimaryPhoneNumber());
     }
-
 
 
     @Override

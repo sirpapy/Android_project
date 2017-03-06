@@ -3,6 +3,7 @@ package fr.amcf;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,15 +40,16 @@ public class DisplayConversation extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         /*Bundle b = getIntent().getExtras();
         contact = (Contact) b.get("contact");*/
-
+        contact = (Contact) getIntent().getSerializableExtra("contact");
+        Log.v("coucou", contact.getName());
         messageContainer = (ListView) findViewById(R.id.messageContainer);
         messageEdit = (EditText) findViewById(R.id.messageEdit);
         sendBtn = (Button) findViewById(R.id.sendButton);
         messageHistory = new ArrayList<>();
-        adapter = new MessageAdapter(this,R.layout.item_chat_left,messageHistory);
+        adapter = new MessageAdapter(this, R.layout.item_chat_left, messageHistory);
         messageContainer.setAdapter(adapter);
 
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             messageEdit.setText(savedInstanceState.getString("messageToSend"));
             contact = (Contact) savedInstanceState.get("contact");
             /*messageHistory = contact.getMessages();
@@ -57,12 +59,12 @@ public class DisplayConversation extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(messageEdit.getText().toString().trim().equals("")){
+                if (messageEdit.getText().toString().trim().equals("")) {
                     Toast.makeText(DisplayConversation.this, "Please input some text...", Toast.LENGTH_SHORT).show();
                 }
                 Toast.makeText(getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
                 sendSMS();
-                Message msg = new Message(messageEdit.getText().toString(),MessageType.SMS,System.currentTimeMillis());
+                Message msg = new Message(messageEdit.getText().toString(), MessageType.SMS, System.currentTimeMillis());
                 messageHistory.add(msg);
                 adapter.notifyDataSetChanged();
                 messageEdit.setText("");
@@ -80,16 +82,15 @@ public class DisplayConversation extends AppCompatActivity {
     }
 
 
-
     protected void sendSMS() {
         String toPhoneNumber = contact.getPrimaryPhoneNumber();
         String smsMessage = messageEdit.getText().toString();
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(toPhoneNumber, null, smsMessage, null, null);
-            Toast.makeText(getApplicationContext(),"SMS sent.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Sending SMS failed."+e.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Sending SMS failed." + e.toString(), Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -98,14 +99,14 @@ public class DisplayConversation extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putString("messageToSend",messageEdit.getText().toString());
+        savedInstanceState.putString("messageToSend", messageEdit.getText().toString());
         /*if(contact == null){
             contact = new Contact("nicolas","bla","0634105760");
         }
         for(Message m : messageHistory){
             contact.getMessages().add(m);
         }*/
-        savedInstanceState.putParcelable("contact",contact);
+        //savedInstanceState.putParcelable("contact",contact);
     }
 
 }

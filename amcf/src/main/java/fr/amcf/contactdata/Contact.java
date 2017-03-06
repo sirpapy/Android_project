@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +17,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Created by dchesnea on 09/02/2017.
  */
-public class Contact implements  Parcelable{
+public class Contact implements Serializable {
     private final String name;
     private final String email;
     private final String primaryPhoneNumber;
@@ -28,13 +29,6 @@ public class Contact implements  Parcelable{
         primaryPhoneNumber = builder.primaryPhoneNumber;
         messages = Collections.unmodifiableList(builder.messages);
     }
-
-//    public Contact(String name, String email, String primaryPhoneNumber){
-//        this.name = name;
-//        this.email = email;
-//        this.primaryPhoneNumber = primaryPhoneNumber;
-//        messages = new ArrayList<>();
-//    }
 
     public boolean isPhoneNumberEquals(String phoneNumber) {
         requireNonNull(phoneNumber);
@@ -74,38 +68,6 @@ public class Contact implements  Parcelable{
     public static Builder builder() {
         return new Builder();
     }
-
-
-    public int describeContents() {
-        return 0;
-    }
-
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeString(name);
-        out.writeString(email);
-        out.writeString(primaryPhoneNumber);
-        out.writeList(messages);
-    }
-
-    public static final Parcelable.Creator<Contact> CREATOR
-            = new Parcelable.Creator<Contact>() {
-        public Contact createFromParcel(Parcel in) {
-            return new Contact(in);
-        }
-
-        public Contact[] newArray(int size) {
-            return new Contact[size];
-        }
-    };
-
-    private Contact(Parcel in) {
-        name = in.readString();
-        email = in.readString();
-        primaryPhoneNumber = in.readString();
-        messages = new ArrayList<>();
-        in.readList(messages,null);
-    }
-
 
     public static class Builder {
         private String name;
