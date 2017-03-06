@@ -1,6 +1,10 @@
 package fr.amcf;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -15,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.amcf.contactdata.Contact;
+import fr.amcf.contactdata.ContactProviders;
 import fr.amcf.message.Message;
 import fr.amcf.message.MessageAdapter;
 import fr.amcf.message.MessageType;
@@ -38,10 +43,15 @@ public class DisplayConversation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display_conversation);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        /*Bundle b = getIntent().getExtras();
-        contact = (Contact) b.get("contact");*/
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)) {
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 2);
+            }
+        }
+
         contact = (Contact) getIntent().getSerializableExtra("contact");
-        Log.v("coucou", contact.getName());
         messageContainer = (ListView) findViewById(R.id.messageContainer);
         messageEdit = (EditText) findViewById(R.id.messageEdit);
         sendBtn = (Button) findViewById(R.id.sendButton);
