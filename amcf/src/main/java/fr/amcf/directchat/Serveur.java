@@ -43,7 +43,6 @@ public class Serveur extends Service {
             try {
                 serverSocket.close();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -103,7 +102,6 @@ public class Serveur extends Service {
 
                 }
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -141,7 +139,6 @@ public class Serveur extends Service {
                 });
 
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
                 message += "Something wrong! " + e.toString() + "\n";
             }
@@ -179,7 +176,6 @@ public class Serveur extends Service {
             }
 
         } catch (SocketException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             ip += "Something Wrong! " + e.toString() + "\n";
         }
