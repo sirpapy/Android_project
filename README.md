@@ -16,3 +16,9 @@ Détection d'un utilisateur bourré	------------------------------> Damien <br>
 
 
 Facebook App id : 1046614502109093
+
+
+Teacher : <br>
+Michel Chilowicz <br>
+Laboratoire d'Informatique Gaspard-Monge
+UPEM MLV
