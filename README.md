@@ -1,10 +1,9 @@
 ## Team
-CHESNEAU Damien
-FRECHET Nicolas
-MASLAH Karim
-NDIAYE Pape Ballé
-NDOYE Lamine
-RABEARIJAO Maminirina Thierry
+CHESNEAU Damien (damienChesneau) </br>
+FRECHET Nicolas (Nico0293) </br>
+NDIAYE Pape Ballé (sirpapy) </br>
+NDOYE Lamine (amadndoye) </br>
+RABEARIJAO Maminirina Thierry (raptao) </br>
 
 ## Task distribution
 Conversation en SMS	 -------------------------------------------> Pape&Thierry <br>
@@ -12,3 +11,7 @@ Conversation avec facebook messenger	--------------------------> Pape&Thierry <b
 Conversation dite "directe"	------------------------------------> Lamine <br>
 Interface graphique et association des utilisateurs	------------> Nicoas <br>
 Détection d'un utilisateur bourré	------------------------------> Damien <br>
+
+
+
+Facebook App id : 1046614502109093
