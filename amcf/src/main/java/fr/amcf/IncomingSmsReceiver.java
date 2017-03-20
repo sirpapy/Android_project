@@ -2,12 +2,10 @@ package fr.amcf;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
@@ -15,7 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import fr.amcf.contactdata.ContactProviders;
-import fr.amcf.contactview.Contact;
+import fr.amcf.contactdata.Contact;
 import fr.amcf.message.Message;
 import fr.amcf.message.MessageType;
 

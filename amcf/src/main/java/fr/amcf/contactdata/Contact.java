@@ -1,7 +1,11 @@
-package fr.amcf.contactview;
+package fr.amcf.contactdata;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +17,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * Created by dchesnea on 09/02/2017.
  */
-public class Contact {
+public class Contact implements Serializable {
     private final String name;
     private final String email;
     private final String primaryPhoneNumber;
@@ -108,9 +112,6 @@ public class Contact {
         }
 
         public Contact build() {
-            if (primaryPhoneNumber.startsWith("+")) {
-                primaryPhoneNumber = "0" + primaryPhoneNumber.substring(1);
-            }
             return new Contact(this);
         }
     }

@@ -5,14 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
-
-import fr.amcf.R;
 
 /**
  * Created by dchesnea on 15/02/2017.
  */
-class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
+public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
     private final GestureDetector gestureDetector;
     private final ClickListener clickListener;
@@ -38,7 +35,6 @@ class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
         View child = rv.findChildViewUnder(e.getX(), e.getY());
-        ((TextView) (child.findViewById(R.id.name))).setText("Hekki");
         if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
             clickListener.onClick(child, rv.getChildPosition(child));
         }

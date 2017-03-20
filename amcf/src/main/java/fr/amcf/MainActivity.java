@@ -13,10 +13,15 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.facebook.CallbackManager;
 import com.facebook.FacebookAuthorizationException;
 import com.facebook.FacebookCallback;
@@ -24,9 +29,18 @@ import com.facebook.FacebookException;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.amcf.contactdata.ContactProviders;
+import fr.amcf.contactdata.Contact;
 import fr.amcf.contactview.ContactActivity;
+import fr.amcf.contactview.DividerItemDecoration;
+import fr.amcf.contactview.RecyclerTouchListener;
 import fr.amcf.integration.facebook.LoginFacebookActivity;
+import fr.amcf.recentcontactview.RecentContactTouchEventCallback;
+import fr.amcf.recentcontactview.RecentContactsAdapter;
 
 import static fr.amcf.R.id.fab;
 
@@ -36,6 +50,11 @@ public class MainActivity extends AppCompatActivity
     private CallbackManager callbackManager;
     private PendingAction pendingAction = PendingAction.NONE;
     private FloatingActionButton actionButtonSendSMS;
+
+    private List<Contact> contactList = new ArrayList<>();
+    private RecyclerView recentContactView;
+    private RecentContactsAdapter recentContactsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +117,54 @@ public class MainActivity extends AppCompatActivity
             }
 
         });
+
+        recentContactView = (RecyclerView) findViewById(R.id.lastContactContainer);
+
+        recentContactsAdapter = new RecentContactsAdapter(contactList, this);
+
+        recentContactView.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recentContactView.setLayoutManager(mLayoutManager);
+        recentContactView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recentContactView.setItemAnimator(new DefaultItemAnimator());
+
+        recentContactView.setAdapter(recentContactsAdapter);
+
+        recentContactView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recentContactView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Contact contact = contactList.get(position);
+                //Toast.makeText(getApplicationContext(), contact.getName() + " selected :)", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                //TODO
+            }
+        }));
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)) {
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, 2);
+            }
+        } else {
+            initContacts();
+        }
+        ItemTouchHelper.Callback callback = new RecentContactTouchEventCallback(recentContactsAdapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recentContactView);
+
+    }
+
+    private void initContacts() {
+        ContactProviders.initContacts(this);
+        // a changer pour recuperer les dernier contacts getLastUseContacts
+        List<Contact> contacts = ContactProviders.getAll();
+        if (!contacts.isEmpty()) {
+            contactList.addAll(contacts);
+            recentContactsAdapter.notifyDataSetChanged();
+        }
     }
 
     private void initSendSMSActionButton() {
@@ -148,7 +215,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.nav_contact_list:
                 startActivity(new Intent(this, ContactActivity.class));
                 break;

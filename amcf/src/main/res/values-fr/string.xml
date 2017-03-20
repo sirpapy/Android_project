@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="cancel_login">Login annulé</string>
+    <string name="contact.click.call">Appeler</string>
+    <string name="contact.click.newmessage">Nouveau message</string>
 </resources>

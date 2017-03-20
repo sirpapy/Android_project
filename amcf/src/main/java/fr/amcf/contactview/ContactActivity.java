@@ -2,11 +2,8 @@ package fr.amcf.contactview;
 
 
 import android.Manifest;
-import android.app.Service;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,9 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.amcf.R;
+import fr.amcf.contactdata.Contact;
 import fr.amcf.contactdata.ContactProviders;
-import fr.amcf.message.Message;
-import fr.amcf.message.MessageType;
 
 /**
  * Created by dchesnea on 15/02/2017.

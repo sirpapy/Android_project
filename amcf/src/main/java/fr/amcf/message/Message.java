@@ -1,24 +1,29 @@
 package fr.amcf.message;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by Sirpapy on 19/02/2017.
  */
 
-public class Message implements Comparable<Message> {
+public class Message implements Comparable<Message>, Serializable {
 
     private String body;
     private MessageType type;
     private long date;
     private boolean isMine;
 
-    public Message(String body, MessageType type, long date,boolean isMine) {
+    public Message(String body, MessageType type, long date, boolean isMine) {
         this.body = body;
         this.type = type;
         this.date = date;
         this.isMine = isMine;
     }
 
-    public Message(String body, MessageType type, long date){
+    public Message(String body, MessageType type, long date) {
         this.body = body;
         this.type = type;
         this.date = date;

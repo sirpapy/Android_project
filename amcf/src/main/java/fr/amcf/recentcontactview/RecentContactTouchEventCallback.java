@@ -1,19 +1,20 @@
-package fr.amcf.contactview;
+package fr.amcf.recentcontactview;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.TextView;
 
 import fr.amcf.R;
+import fr.amcf.contactview.ItemTouchHelperAdapter;
 
 /**
  * Created by dchesnea on 14/02/2017.
  */
-public class ItemTouchEventCallback extends ItemTouchHelper.Callback {
+public class RecentContactTouchEventCallback extends ItemTouchHelper.Callback {
 
     private final ItemTouchHelperAdapter recyclerAdapter;
 
-    public ItemTouchEventCallback(ItemTouchHelperAdapter adapter) {
+    public RecentContactTouchEventCallback(ItemTouchHelperAdapter adapter) {
         recyclerAdapter = adapter;
     }
 
@@ -24,13 +25,13 @@ public class ItemTouchEventCallback extends ItemTouchHelper.Callback {
 
     @Override
     public boolean isItemViewSwipeEnabled() {
-        return false;
+        return true;
     }
 
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipeFlags =0;// ItemTouchHelper.END; //ItemTouchHelper.START |
+        int swipeFlags = ItemTouchHelper.END; //ItemTouchHelper.START |
         return makeMovementFlags(dragFlags, swipeFlags);
     }
 
