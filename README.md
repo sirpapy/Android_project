@@ -1,4 +1,5 @@
 ## Team
+This project is realised by : 
 CHESNEAU Damien (damienChesneau) </br>
 FRECHET Nicolas (Nico0293) </br>
 NDIAYE Pape Ballé (sirpapy) </br>
