@@ -73,14 +73,12 @@ public class SMSList extends Activity implements AdapterView.OnItemClickListener
         HashMap<String, List<String>> userAndMessages = new HashMap<>();
         do {
             cpt++;
-           /*
-           //CE CODE NE MARCHE PAS ENCORE A CAUSE DU CONTENT PROVIDER DE DAMIEN ---Pape
-           if (cpt == maxToLoad) break;
+            if (cpt == maxToLoad) break;
             if (ContactProviders.getByPhoneNumber(smsInboxCursor.getString(indexAddress)) != null) {
                 number = ContactProviders.getByPhoneNumber(smsInboxCursor.getString(indexAddress)).getName();
-            } else {*/
+            } else {
                 number = smsInboxCursor.getString(indexAddress);
-            /*}*/
+            }
             if (userAndMessages.get(number) == null) {
                 userAndMessages.put(number, new ArrayList<String>());
             }
@@ -90,6 +88,7 @@ public class SMSList extends Activity implements AdapterView.OnItemClickListener
                     "\n" + smsInboxCursor.getString(indexBody) + "\n";
             arrayAdapter.add(str);
         } while (smsInboxCursor.moveToNext());
+        System.out.println("To be deleted");
     }
 
     public void updateList(final String smsMessage) {
