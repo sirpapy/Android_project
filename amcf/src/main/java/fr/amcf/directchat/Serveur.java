@@ -83,7 +83,7 @@ public class Serveur extends Service {
                 while (true) {
                     // block the call until connection is created and return
                     // Socket object
-                    Toast.makeText(getApplicationContext(),"mkjmlkjm",Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(),"Serveur is running",Toast.LENGTH_SHORT);
                     Socket socket = serverSocket.accept();
                     count++;
                     message += "#" + count + " from "

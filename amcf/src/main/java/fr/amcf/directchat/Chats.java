@@ -44,7 +44,13 @@ public class Chats extends Fragment implements View.OnClickListener {
         msgListView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         msgListView.setStackFromBottom(true);
 
-        chatlist = new ArrayList<>();
+        if(!savedInstanceState.isEmpty()){
+            chatlist = (ArrayList<ChatMessage>) savedInstanceState.getSerializable("chatlist");
+            user1 = savedInstanceState.getString("user1");
+            user2 = savedInstanceState.getString("user2");
+        }else{
+            chatlist = new ArrayList<>();
+        }
         chatAdapter = new ChatAdapter(getActivity(), chatlist);
         msgListView.setAdapter(chatAdapter);
         return view;
@@ -52,6 +58,12 @@ public class Chats extends Fragment implements View.OnClickListener {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("chatlist",chatlist);
+        outState.putString("user1",user1);
+        outState.putString("user2",user2);
+
+
     }
 
     public void sendTextMessage(View v) {
@@ -60,11 +72,11 @@ public class Chats extends Fragment implements View.OnClickListener {
         if (!message.equalsIgnoreCase("")) {
             final ChatMessage chatMessage = new ChatMessage(user1, user2, message, "" + random.nextInt(1000), true);
             chatMessage.setMsgID();
-            chatMessage.body = message;
             chatMessage.Date = CommonMethods.getCurrentDate();
             chatMessage.Time = CommonMethods.getCurrentTime();
             msg_edittext.setText("");
             chatAdapter.add(chatMessage);
+            chatlist.add(chatMessage);
             chatAdapter.notifyDataSetChanged();
         }
     }
