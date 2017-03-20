@@ -1,4 +1,5 @@
 ## Team
+This project is realised by : 
 CHESNEAU Damien (damienChesneau) </br>
 FRECHET Nicolas (Nico0293) </br>
 NDIAYE Pape Ballé (sirpapy) </br>
@@ -15,3 +16,9 @@ Détection d'un utilisateur bourré	------------------------------> Damien <br>
 
 
 Facebook App id : 1046614502109093
+
+
+Teacher : <br>
+Michel Chilowicz <br>
+Laboratoire d'Informatique Gaspard-Monge
+UPEM MLV
