@@ -36,9 +36,9 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         int viewType = getItemViewType(position);
 
         if (message.isMine()) {
-            layoutResource = R.layout.item_chat_left;
-        } else {
             layoutResource = R.layout.item_chat_right;
+        } else {
+            layoutResource = R.layout.item_chat_left;
         }
 
         if (convertView != null) {

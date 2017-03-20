@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-
-import fr.amcf.contactview.Contact;
 
 /**
  * Created by dchesnea on 21/02/2017.
@@ -41,11 +41,12 @@ public class ContactProviders {
                 if (cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)) > 0) {
                     Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                             null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
-                    while (pCur.moveToNext()) {
+                    pCur.moveToNext();
+                    //while (pCur.moveToNext()) {
                         String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                         builders.add(Contact.builder().setName(name)
                                 .setEmail(email).setPrimaryPhoneNumber(phoneNo).build());
-                    }
+                    //}
                     pCur.close();
                 }
             }
@@ -78,5 +79,27 @@ public class ContactProviders {
     public static List<Contact> getAll() {
         checkState();
         return contacts;
+    }
+
+    public static List<Contact> getLastUseContacts(){
+        List<Contact> list = contacts;
+        for(Contact c : list){
+            if(c.getMessages().size() == 0){
+                list.remove(c);
+            }
+        }
+
+        if(list.isEmpty()) {
+            Collections.sort(list, new Comparator<Contact>() {
+                @Override
+                public int compare(Contact o1, Contact o2) {
+                    if (o1.getMessages().get(o1.getMessages().size() - 1).getDate() >= o2.getMessages().get(o2.getMessages().size() - 1).getDate()) {
+                        return -1;
+                    }
+                    return 1;
+                }
+            });
+        }
+        return list;
     }
 }

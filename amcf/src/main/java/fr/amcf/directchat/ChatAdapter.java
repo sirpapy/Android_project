@@ -1,4 +1,4 @@
-package fr.amcf.direct_chat_package;
+package fr.amcf.directchat;
 
 /**
  * Created by andoye on 17/02/2017.
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;

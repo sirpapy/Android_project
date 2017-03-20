@@ -39,7 +39,9 @@
         <!-- android:configChanges= -->
         <!-- "keyboard|keyboardHidden|screenLayout|screenSize|orientation" -->
         <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" -->
-        <activity android:name=".DisplayConversation"/>
+        <activity android:name=".DisplayConversation"
+            android:parentActivityName=".MainActivity"/>
+
         <activity android:name=".DirectCommunicationAcitivty"/>
 
         <meta-data
