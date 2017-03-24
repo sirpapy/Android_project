@@ -10,8 +10,8 @@ RABEARIJAO Maminirina Thierry (raptao) </br>
 Conversation en SMS	 -------------------------------------------> Pape&Thierry <br>
 Conversation avec facebook messenger	--------------------------> Pape&Thierry <br>
 Conversation dite "directe"	------------------------------------> Lamine <br>
-Interface graphique et association des utilisateurs	------------> Nicoas <br>
-Détection d'un utilisateur bourré	------------------------------> Damien <br>
+Interface graphique et association des utilisateurs	------------> Nicoas & Damien <br>
+Détection d'un utilisateur bourré	------------------------------> (en projet) <br>
 
 
 
